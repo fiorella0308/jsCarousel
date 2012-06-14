@@ -6,7 +6,7 @@
         , effect: 'fade'
         , width: 400
         , height: 400
-    })
+    });
 
     $('#start-button').click(function (e)
     {
