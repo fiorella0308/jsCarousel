@@ -8,6 +8,11 @@
         , height: 400
     });
 
+    $('#carrusel').jsCarousel('addCallback', 'onLoad', function ()
+    {
+        console.log('loaded');
+    });
+
     $('#start-button').click(function (e)
     {
         $('#carrusel').jsCarousel('start');

@@ -10,7 +10,12 @@
         settings: null
         , interval: null
         , counter: 0
-    }
+    };
+
+    var callbacks =
+    {
+        onLoad: null
+    };
 
     var methods =
     {
@@ -28,7 +33,6 @@
                 , effectDuration: 500
                 , width: 'auto'
                 , height: 'auto'
-                , onLoad: null
             }, options);
 
             return this.each(function ()
@@ -80,17 +84,21 @@
                 // Applies the generated HTML
                 el.html(html);
 
-                // If the onLoad callback has a value, call it
-                if (typeof (globals.settings.onLoad) == 'function')
-                {
-                    globals.settings.onLoad();
-                }
+                // Wait for the images to be loaded
+//                el.load(function ()
+//                {
+                    // If the onLoad callback has a value, call it
+                    if (typeof (callbacks.onLoad) == 'function')
+                    {
+                        callbacks.onLoad();
+                    }
 
-                // If autostart is enabled, starts the carousel
-                if (globals.settings.autostart)
-                {
-                    methods._start(_this);
-                }
+                    // If autostart is enabled, starts the carousel
+                    if (globals.settings.autostart)
+                    {
+                        methods._start(_this);
+                    }
+//                });
             });
         }
         // This method starts the carousel
@@ -153,6 +161,28 @@
             globals.settings.direction *= -1;
             methods._next(_this);
             globals.settings.direction *= -1;
+
+            return _this;
+        }
+        // This method adds a callback
+        , addCallback: function (name, callback)
+        {
+            return methods._addCallback(this, name, callback);
+        }
+        , _addCallback: function (_this, name, callback)
+        {
+            callbacks[name] = callback;
+
+            return _this;
+        }
+        // This method removes a callback
+        , removeCallback: function (name)
+        {
+            return methods._removeCallback(this, name);
+        }
+        , _removeCallback: function (_this, name)
+        {
+            callbacks[name] = null;
 
             return _this;
         }
@@ -262,7 +292,7 @@
         {
             return method.charAt(0) != '_';
         }
-    }
+    };
 
     $.fn.jsCarousel = function (method)
     {
