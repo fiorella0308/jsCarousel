@@ -85,20 +85,27 @@
                 el.html(html);
 
                 // Wait for the images to be loaded
-//                el.load(function ()
-//                {
-                    // If the onLoad callback has a value, call it
-                    if (typeof (callbacks.onLoad) == 'function')
-                    {
-                        callbacks.onLoad();
-                    }
+                var loadedImages = 0;
+                var images = $('img', el);
+                images.load(function ()
+                {
+                    loadedImages++;
 
-                    // If autostart is enabled, starts the carousel
-                    if (globals.settings.autostart)
+                    if (loadedImages == images.size())
                     {
-                        methods._start(_this);
+                        // If autostart is enabled, starts the carousel
+                        if (globals.settings.autostart)
+                        {
+                            methods._start(_this);
+                        }
+
+                        // If the onLoad callback has a value, call it
+                        if (typeof (callbacks.onLoad) == 'function')
+                        {
+                            callbacks.onLoad();
+                        }
                     }
-//                });
+                });
             });
         }
         // This method starts the carousel

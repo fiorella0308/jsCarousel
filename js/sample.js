@@ -4,8 +4,8 @@
     {
         autostart: true
         , effect: 'fade'
-        , width: 400
-        , height: 400
+        , width: 626
+        , height: 499
     });
 
     $('#carrusel').jsCarousel('addCallback', 'onLoad', function ()
