@@ -1,6 +1,10 @@
 ﻿/*
-    jsCarousel by Juanma Santoyo, version 1.0.0.
+    jsCarousel by Juanma Santoyo, version 1.1.0.
     http://www.juanmasantoyo.es
+
+    Changelog:
+    - Added OnLoad callback
+    - Init method waits for the images to be loaded
 */
 
 (function ($)
@@ -10,6 +14,8 @@
         settings: null
         , interval: null
         , counter: 0
+        , loaded: false
+
     };
 
     var callbacks =
@@ -93,8 +99,10 @@
 
                     if (loadedImages == images.size())
                     {
+                        globals.loaded = true;
+
                         // If autostart is enabled, starts the carousel
-                        if (globals.settings.autostart)
+                        if (globals.settings.autoStart)
                         {
                             methods._start(_this);
                         }
@@ -115,14 +123,21 @@
         }
         , _start: function (_this)
         {
-            if ($('li', _this).size() > 1)
+            if (globals.loaded)
             {
-                globals.interval = window.setInterval(
-                    function ()
-                    {
-                        methods._next(_this);
-                    }
-                    , globals.settings.interval);
+                if ($('li', _this).size() > 1)
+                {
+                    globals.interval = window.setInterval(
+                        function ()
+                        {
+                            methods._next(_this);
+                        }
+                        , globals.settings.interval);
+                }
+            }
+            else
+            {
+                globals.settings.autoStart = true;
             }
 
             return _this;
