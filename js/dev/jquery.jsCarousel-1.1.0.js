@@ -15,7 +15,6 @@
         , interval: null
         , counter: 0
         , loaded: false
-
     };
 
     var callbacks =
@@ -26,7 +25,7 @@
     var methods =
     {
         // This method inits the jsCarousel
-        init: function (options)
+        _init: function (options)
         {
             var _this = this;
 
@@ -325,7 +324,7 @@
         }
         else if (typeof method === 'object' || !method)
         {
-            return methods.init.apply(this, arguments);
+            return methods._init.apply(this, arguments);
         }
         else
         {
