@@ -12,3 +12,13 @@ The directory base structure is:
 
 ./
 	./jsPlugin-a.b.c.js
+
+Changelog:
+
+1.1.1:
+	- Changed the image costruction, so the a element doesn't loses their attributes
+
+1.1.0:
+    - Added onLoad callback
+	- Added addCallback and removeCallback methods
+	- Init method waits for the images to be loaded
