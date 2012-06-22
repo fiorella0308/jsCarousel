@@ -1,6 +1,6 @@
 ﻿/*
     jsCarousel by Juanma Santoyo, version 1.1.0.
-    http://www.juanmasantoyo.es
+    http://www.juanmasantoyo.es/index.php/jscarousel/
 
     Changelog:
     - Changed the image costruction, so the a element doesn't loses their attributes

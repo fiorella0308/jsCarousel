@@ -1,6 +1,6 @@
 ﻿/*
     jsCarousel by Juanma Santoyo, version 1.1.0.
-    http://www.juanmasantoyo.es
+    http://www.juanmasantoyo.es/index.php/jscarousel/
 
     Changelog:
     - Added OnLoad callback
