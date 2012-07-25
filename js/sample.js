@@ -10,7 +10,10 @@
 
     $('#carrusel').jsCarousel('addCallback', 'onLoad', function ()
     {
-        console.log('loaded');
+        if (console)
+        {
+            console.log('loaded');
+        }
     });
 
     $('#start-button').click(function (e)
